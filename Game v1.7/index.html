@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>My awesome game</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Archivo|Archivo+Narrow:600"
+      rel="stylesheet"
+    />
+    <link href="css/site.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+  </head>
+
+  <body>
+<!--⭐ WELCOME ⭐ -->
+
+    <div id="welcome" class="welcome">
+      <div class="welcome-bg">
+      <h1>Welcome to the game</h1>
+      <p>
+        <br>The <b>Let's play</b> mode is sequential, and the difficulty increases through 5 levels.
+        <br>The <b>Relax mode</b> allows you to choose a level without time or movements restrictions.
+      </p>
+      
+      <div class="welcome-buttons">
+        <button id="normal-game">Let's play!</button>
+        <button id="relaxed-game">Relax mode</button>
+      </div>
+    </div>
+  </div>
+
+
+<!--⭐ COUNTERS ⭐ -->
+<header class="header">
+  <div class="counters">
+
+<!--⭐ THE MOVEMENT COUNTER ⭐ -->     
+    <div class="counter-item">
+      <h4 class="header-title">Movements</h4>
+      <div class="header-num">
+        <span id="mov">00</span>/<span id="total-movements">20</span>
+      </div>
+    </div>
+  </div>
+
+<!-- ⭐ THE TIMER ⭐ --> 
+  <div id="timer" class="counter-item">
+    <h4 class="header-title">Timer</h4>
+    <div class="header-num">
+      <span id="minutes">00</span>:<span id="seconds">00</span>
+    </div>
+  </div>
+</div>
+
+<!-- ⭐ THE LEVEL COUNTER ⭐ --> 
+<div class="level">
+  <h4 class="header-title">Level</h4>
+  <div class="header-num"><span id="level">01</span></div>
+</div>
+<button id="level-control" class="level-control">⦙</button>
+
+</header>
+
+<!-- ⭐ THE TABLE ⭐ --> 
+    <main><div id="table" class="table">
+      <div class="card">
+        <div class="contentCard">🔥</div>
+      </div>
+    </div>
+
+
+<div id="levelUp" class="level-up">
+  <div class="modal">
+    <h2>Well done!</h2>
+    <button id="up">Next level</button>
+    <button class="restart">Restart</button>
+  </div>
+</div>
+
+<div id="gameOver" class="game-over">
+  <div class="modal">
+    <h2>You disappointed everyone</h2>
+    <p>... how embarrasing</p>
+    <button class="restart">Restart</button>
+  </div>
+</div>
+
+<div id="timeOver" class="time-over">
+  <div class="modal">
+    <h2>Oh no!</h2>
+    <p>The time is over! Be better!!!</p>
+    <button class="restart">Restart</button>
+  </div>
+</div>
+
+<div id="gameFinished" class="game-finished">
+  <div class="modal">
+    <h2>Congratulations!</h2>
+    <p>You've completed all levels! What a chad!</p>
+    <p>Stories will be written about your incredible <s>feet</s> feat</p>
+    <button class="restart">Restart</button>
+  </div>
+</div>
+
+</main>
+
+<div class="select-level">
+  <button id="close-levels" class="close-levels"></button>
+  <ul></ul>
+</div>
+    <script src="js/soundfx.js"></script>
+    <script src="js/javascript.js"></script>
+  </body>
+</html>

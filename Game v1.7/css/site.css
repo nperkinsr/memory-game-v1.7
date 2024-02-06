@@ -1,0 +1,22 @@
+:root {
+  --bg: #fafafa;
+  --font: "Minecraftia", sans-serif;
+  --font-display: "Minecraftia", sans-serif;
+  --pink: #9b5f67;
+  --orange: #f27121;
+  --gradient: linear-gradient(35deg, var(--orange), var(--pink));
+}
+
+body {
+  margin: auto;
+  min-height: 100vh;
+  font-family: "Minecraftia", sans-serif;
+  background-image: url("bg/backgroundBlur.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+@font-face { font-family: Minecraftia; src: url('font/Minecraftia-Regular.ttf'); } 
+@font-face { font-family: Minecraftia; font-weight: bold; src: url('font/Minecraftia-Regular.ttf');}

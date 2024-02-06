@@ -1,0 +1,386 @@
+body {
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.table {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  max-width: 50rem;
+  margin: auto;
+  position: relative;
+}
+
+
+.card {
+  width: 90px;
+  height: 110px;
+  margin: 1rem;
+  background-image: url("cards/cardBack.png");
+  position: relative;
+  transition: 0.5s;
+  cursor: pointer;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+.contentCard {
+  width: 90px;
+  height: 110px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  transform: rotateY(-180deg);
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 4rem;
+}
+
+.contentCard::selection {
+  background: transparent;
+}
+
+.uncoverCard {
+  transform: rotateY(-180deg);
+}
+
+@keyframes bad {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+@keyframes good {
+  from {
+    transform: rotateY(-180deg) scale3d(1, 1, 1);
+    opacity: 1;
+  }
+
+  25% {
+    transform: rotateY(-180deg) scale3d(1.1, 1.1, 1.1);
+    opacity: 1;
+  }
+
+  to {
+    transform: rotateY(-180deg) scale3d(1, 1, 1);
+    opacity: 0;
+  }
+}
+
+.correct {
+  pointer-events: none;
+}
+
+.correct .contentCard {
+  animation-name: good;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+}
+
+.incorrect {
+  animation-name: bad;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+
+/* COUNTERS */
+.header {
+  padding: 0rem 4rem;
+  background: rgba(26, 21, 21, 0.803);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.header-title {
+  font-family: var(--font);
+  font-size: 1rem;
+  text-transform: uppercase;
+  line-height: 3;
+  margin: 0;
+  color: rgb(255, 255, 255);
+}
+
+.header-num {
+  font-family: var(--font);
+  color: var(--pink);
+
+  font-size: 2rem;
+  line-height: 0.9;
+}
+
+.counter-item {
+  margin: 1rem;
+}
+
+.hidden-timer{
+  display: none;
+}
+
+/* --------------------------------- */
+/* ------- MODAL AND FEEDBACK ------ */
+/* --------------------------------- */
+
+.level-up,
+.game-over,
+.time-over,
+.game-finished {
+  display: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(-45deg, #f76e44, #bc1698, #0292c7, #07b98f);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  height: 100vh;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.feedback.visible,
+.level-up.visible,
+.game-over.visible,
+.time-over.visible,
+.game-finished.visible{
+  display: flex;
+}
+
+.modal {
+  background: white;
+  padding: 3rem 3rem 2.5rem;
+  margin: auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 10px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25), 4px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.modal h2 {
+  color: #5b50bb;
+  font-family: var(--font-display);
+  margin: 0;
+  font-size: 2rem;
+}
+
+.modal p {
+  font-size: 1rem;
+  color: #b0b0b0
+}
+
+.modal button {
+  margin: 2rem 4rem;
+  padding: 1rem 5rem 0.5rem 5rem;
+}
+
+button {
+  cursor: pointer;
+  border: 0;
+  background-color: #5b50bb;
+  border-radius: 1rem;
+  color: rgb(255, 255, 255);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  transition: 0.3s;
+}
+
+button:hover,
+button:focus {
+  opacity: 0.5;
+  outline: 0;
+}
+
+.modal .restart {
+  color: #5b50bb;
+  background: #f2f2f2;
+  border: 0;
+  font-family: var(--font);
+  font-size: 1rem;
+  margin: 0;
+  padding-top: 1rem !important;
+  padding: 0.5rem 5.7rem;
+}
+
+/* --------------------------------- */
+/* ------- LEVELS ------ */
+/* --------------------------------- */
+
+.level-control {
+  position: absolute;
+  display: inline-block;
+  font-size: 2.5rem;
+  top: 3rem;
+  right: 1rem;
+  padding-bottom: 1.8rem; /* This aligns the ellipsis */
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  line-height: 0px;
+  background: #c4b8b83c;
+}
+
+.level-control.visible {
+  position: absolute;
+  font-size: 1rem;
+  top: 2.4rem;
+  right: 1rem;
+  padding: 0;
+  width: 2rem;
+  height: 2rem;
+  text-align: center;
+  background: #c4b8b83c;
+}
+
+
+.hidden-control {
+  display: none;
+}
+
+.select-level {
+  background-color: #1e1b1b;
+  position: fixed;
+  width: 180px;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  transform: translateX(250px);
+  transition: transform .3s;
+  padding: 2rem 2rem;
+}
+
+.select-level.visible {
+  transform: translateX(0);
+  display: flex;
+}
+
+.select-level button{
+  background: transparent;
+  padding: 0;
+  font-size: 1.5rem;
+}
+
+.select-level ul{
+  padding-top: 5rem;
+  list-style: none;
+  padding-left: 0;
+
+}
+
+.select-level li{
+  margin-bottom: 1rem;
+  text-align: center;
+
+}
+
+.close-levels{
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  font-size: 1rem;
+  font-family: sans-serif;
+}
+
+
+
+/* --------------------------------- */
+/* ------- WELCOME TO THE GAME ------ */
+/* --------------------------------- */
+
+.welcome {
+  display: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-image: url("bg/background.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 1;
+}
+
+.welcome-bg {
+  background: rgba(255, 255, 255, 0.974);
+  padding: 3rem 3rem 2.5rem;
+  margin: auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 15px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25), 4px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.welcome.visible{
+  display: flex;
+}
+
+.welcome h1 {
+  font-family: var(--font);
+  color: #5b50bb;
+  text-transform: uppercase;
+  font-size: 2rem;
+  margin-top: 0;
+  margin-bottom: -2rem;
+}
+
+.welcome p {
+  font-size: 0.9rem;
+  line-height: 2.5rem;
+  color: #939393;
+  padding-bottom: 2rem;
+}
+
+.welcome-buttons {
+  display: flex;
+}
+
+.welcome button {
+  padding: 1rem 3rem;
+  margin: 0 3rem;
+  min-width: 20rem;
+  padding-bottom: 0.5rem;
+}
